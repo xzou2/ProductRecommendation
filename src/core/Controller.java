@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Map;
 
 import common.Constants;
+
 import core.interfaces.Action;
 import core.interfaces.ItemSort;
 import entity.Item;
 import entity.Review;
-import gui.interfaces.Presentation;
 
 public class Controller implements Action {
 
@@ -21,8 +21,6 @@ public class Controller implements Action {
 	private Mediator reviewMediator ;
 	
 	private ItemSort itemSort ; 
-	
-	private Presentation cliDisplay;
 	
 	@Override
 	public List<Item> getRecommendations(Map<String, String> inputs) {

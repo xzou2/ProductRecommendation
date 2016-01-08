@@ -1,4 +1,4 @@
-package gui.interfaces;
+package gui;
 
 import java.util.List;
 
@@ -6,5 +6,5 @@ import entity.Item;
 
 public interface Presentation {
 
-	public String presentItems (List<Item> items); 
+	public String presentItems (List<Item> items);
 }

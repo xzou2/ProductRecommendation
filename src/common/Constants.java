@@ -6,9 +6,13 @@ public class Constants {
 	
 	public static final String SERVICE_KEY = "";
 	
+	public static final String REQUEST_SEARCH = "query";
+	
 	public static final String REQUEST_KEY = "apiKey";
 	
 	public static final String REQUEST_ITEM = "itemId";
+	
+	
 	
 	
 	
