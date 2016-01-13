@@ -1,0 +1,71 @@
+$ java -jar target/ProductRecommendation-0.0.1-SNAPSHOT-jar-with-dependencies.jar ipod
+Jan 12, 2016 10:26:09 PM main.java.core.Controller getRecommendations
+INFO: We find the first item [ Apple iPod touch 16GB, Assorted Colors ] match your keywords
+Jan 12, 2016 10:26:09 PM main.java.core.Controller getRecommendations
+INFO: We now find recommended items for this item
+Jan 12, 2016 10:26:10 PM main.java.core.Controller getRecommendations
+INFO: Found [ 20 ] recommended items.
+Jan 12, 2016 10:26:16 PM main.java.core.Controller getRecommendations
+INFO: Retrieved [10 ] reviews.
+You input keywords: ipod
+We have following recommended items.
+==========================
+Item Name: Bonus Pack Fruit of the Loom New Men's 6+2 Free White Crews
+Sale Price: 13.96
+Review: [ 5.0 / 5.0 ], 2 reviews 
+
+==========================
+
+Item Name: George Girls' School Uniforms, Belted Pleated Scooter
+Sale Price: 8.97
+Review: [ 5.0 / 5.0 ], 2 reviews 
+
+==========================
+
+Item Name: Apple iPad mini 2 16GB WiFi
+Sale Price: 199.0
+Review: [ 4.78 / 5.0 ], 1805 reviews 
+
+==========================
+
+Item Name: Samsung HW-J6000/ZA 300W 6.1-Channel Curved Soundbar
+Sale Price: 449.99
+Review: [ 4.7 / 5.0 ], 56 reviews 
+
+==========================
+
+Item Name: Mountain 26" Bike Tire with DuPont Kevlar
+Sale Price: 17.95
+Review: [ 4.39 / 5.0 ], 61 reviews 
+
+==========================
+
+Item Name: Brinley Co. Women's Sterling Silver Ocean Charm Bracelet, 8.5"
+Sale Price: 16.99
+Review: [ 4.0 / 5.0 ], 1 reviews 
+
+==========================
+
+Item Name: 3-Year Plan for Portable Audio $150-$199.99
+Sale Price: 19.0
+Review: [ 0.0 / 5.0 ], 0 reviews 
+
+==========================
+
+Item Name: 4-Year Plan for Portable Audio $150-$199.99
+Sale Price: 26.0
+Review: [ 0.0 / 5.0 ], 0 reviews 
+
+==========================
+
+Item Name: Men's Flat Front "Comfort Short" with Hidden Expandable Waist
+Sale Price: 14.0
+Review: [ 0.0 / 5.0 ], 0 reviews 
+
+==========================
+
+Item Name: Brinley Co. Women's Sterling Silver Sea Animal Charm Bracelet, 7"
+Sale Price: 29.99
+Review: [ 0.0 / 5.0 ], 0 reviews 
+
+==========================

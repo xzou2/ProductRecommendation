@@ -1,0 +1,55 @@
+This project is a demonstration for using Walmart Labs Open API to retrieve recommended products. 
+Specifically, it fulfills following four functionalities: 
+1. Search for products based upon a user-provided search string
+2. Use the first item in the search response as input for a product recommendation search
+3. Retrieve reviews of the first 10 product recommendations
+4. Rank order the recommended products based upon the review sentiments
+
+A. Requirement: 
+1. Java 1.7 
+2. Maven 3.0.5 
+   In case you don't have Maven, please refer to https://maven.apache.org/ for the installation
+3. Ubuntu 14.04
+
+
+B. Build: 
+To build this application, please type the following steps: 
+1. git clone git@github.ncsu.edu:xzou2/ProductRecommendation.git ProductionRecommendation
+   
+2. cd ProductionRecommendation
+
+3. mvn package 
+
+The `mvn package` command compiles project, runs all unit tests and produces an executable jar file (ProductRecommendation-0.0.1-SNAPSHOT-jar-with-dependencies.jar), 
+which is under target folder. 
+If you only want to run compilation or the unit tests, please run the command  "mvn compile" or "mvn test"
+
+Input & Output:
+As suggested in the requirement document, this application does not need user interfaces. 
+So, the user inputs are taken from the command line.
+Below is example commands (with single or multiple inputs) of running this application, 
+java -jar target/ProductRecommendation-0.0.1-SNAPSHOT-jar-with-dependencies.jar ipod
+or
+java -jar target/ProductRecommendation-0.0.1-SNAPSHOT-jar-with-dependencies.jar convertible car seat
+
+And the output of this application is printed on the console. 
+
+C. Logging: 
+The logging used in this application is from the JDK. 
+The default log configuration is 
+ logs with level from INFO up to SEVERE level are printed on the console and logs with level from FINE to SEVERAL level is output to app.log file. 
+If you want to know the detailed log configure, please refer to the log configure file which is under the root directory of the ProductRecommendation-0.0.1-SNAPSHOT-jar-with-dependencies.jar.
+In addition, if you want use your own log configure file, you can run the command with the -D option
+java -Djava.util.logging.config.file=[path to your log configure file] -jar target/ProductRecommendation-0.0.1-SNAPSHOT-jar-with-dependencies.jar ipod 
+
+D. Assumption: 
+
+E. Sample building output:
+please see the samples/sample-build-output.txt file
+
+F. Sample running output: 
+please see the samples/sample-running-output.txt file 
+
+In case, there are difficulties in building the executable files. I have put an executable ProductRecommendation-0.0.1-SNAPSHOT-jar-with-dependencies.jar under samples folder
+
+
