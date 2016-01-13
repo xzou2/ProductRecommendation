@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.logging.LogManager;
 
 import main.java.common.Constants;
-import main.java.core.Controller;
+import main.java.core.Executor;
 import main.java.core.HttpService;
 import main.java.core.Mediator;
 import main.java.core.ProdRecommendMediator;
@@ -93,7 +93,7 @@ public class Application {
 		Mediator prodRecommendMediator = new ProdRecommendMediator(remoteService);
 		Mediator reviewMediator = new ReviewMediator(remoteService) ;
 		ItemSort sorter = new SimpleItemSort();
-		Action controller = new Controller(searchMediator,prodRecommendMediator,reviewMediator,sorter);
+		Action controller = new Executor(searchMediator,prodRecommendMediator,reviewMediator,sorter);
 		
 		// call the item recommendation service
 		List<Item> items = controller.getRecommendations(inputs);

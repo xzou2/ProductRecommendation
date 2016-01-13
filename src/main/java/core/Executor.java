@@ -21,9 +21,9 @@ import main.java.entity.Review;
  * @author    : Xiaocheng Zou
  *
  */
-public class Controller implements Action {
+public class Executor implements Action {
 	
-	private static final Logger log = Logger.getLogger(Controller.class.getName());
+	private static final Logger log = Logger.getLogger(Executor.class.getName());
 
 	/**
 	 * The first 10 (as documented in the requirement) recommended items that needs the review retrieval 
@@ -50,7 +50,7 @@ public class Controller implements Action {
 	 */
 	private ItemSort itemSort; 
 	
-	public Controller(Mediator searchMediator, Mediator prodRecommendMediator,
+	public Executor(Mediator searchMediator, Mediator prodRecommendMediator,
 			Mediator reviewMediator, ItemSort itemSort) {
 		super();
 		this.searchMediator = searchMediator;

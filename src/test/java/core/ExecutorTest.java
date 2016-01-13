@@ -6,7 +6,7 @@ import java.util.Map;
 
 import main.java.Application;
 import main.java.common.Constants;
-import main.java.core.Controller;
+import main.java.core.Executor;
 import main.java.core.HttpService;
 import main.java.core.Mediator;
 import main.java.core.ProdRecommendMediator;
@@ -23,9 +23,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ControllerTest {
+public class ExecutorTest {
 
-	private Action controller ;
+	private Action executor ;
 	
 	protected Map<String, String> inputs ;
 	
@@ -36,7 +36,7 @@ public class ControllerTest {
 		Mediator prodRecommendMediator = new ProdRecommendMediator(remoteService);
 		Mediator reviewMediator = new ReviewMediator(remoteService) ;
 		ItemSort sorter = new SimpleItemSort();
-		controller = new Controller(searchMediator,prodRecommendMediator,reviewMediator,sorter);
+		executor = new Executor(searchMediator,prodRecommendMediator,reviewMediator,sorter);
 		
 		inputs = new HashMap<String, String>();
 		inputs.put(Constants.REQUEST_API_KEY, Constants.SERVICE_KEY);
@@ -44,7 +44,7 @@ public class ControllerTest {
 
 	@After
 	public void tearDown() throws Exception {
-		controller = null; 
+		executor = null; 
 		inputs = null;
 	}
 
@@ -52,7 +52,7 @@ public class ControllerTest {
 	public void testGetRecommendations() {
 		inputs.put(Constants.REQUEST_SEARCH, "convertible"+ Application.SPACE 
 				                                + "car" + Application.SPACE + "seat");
-		List<Item> recommendedItems = controller.getRecommendations(inputs);
+		List<Item> recommendedItems = executor.getRecommendations(inputs);
 		Assert.assertTrue(recommendedItems.size() > 0 );
 	}
 	
@@ -60,7 +60,7 @@ public class ControllerTest {
 	public void testNonSenseSearch() {
 		inputs.put(Constants.REQUEST_SEARCH, "xxx" + Application.SPACE 
 				                                + "yyy");
-		List<Item> recommendedItems = controller.getRecommendations(inputs);
+		List<Item> recommendedItems = executor.getRecommendations(inputs);
 		Assert.assertTrue(recommendedItems.size()  == 0 );
 	}
 
