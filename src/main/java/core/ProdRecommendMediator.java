@@ -13,6 +13,12 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
+/**
+ * A product recommendation service mediator
+ * Created on : 07/01/2016
+ * @author    : Xiaocheng Zou
+ *
+ */
 public class ProdRecommendMediator extends Mediator {
 
 	public ProdRecommendMediator(RemoteService service) {
@@ -44,8 +50,12 @@ public class ProdRecommendMediator extends Mediator {
 		return items;
 	}
 
+	/* 
+	 * prepare the product recommendation URL in the following format:
+	 * http://api.walmartlabs.com/v1/nbp?apiKey={apiKey}&itemId={itemID}
+	 */
 	@Override
-	protected String assembleURL(Map<String, String> inputs) {
+	protected String prepareURL(Map<String, String> inputs) {
 		StringBuilder sb = new StringBuilder(Constants.SERVICE_BASE);
 		sb.append(RECOMMEND_SERVICE); 
 		sb.append(assembleReqOptions(inputs));

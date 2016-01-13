@@ -34,21 +34,21 @@ public class ReviewMediatorTest extends MediatorTest {
 	@Test
 	public void testEmptyReview() {
 		inputs.put(Constants.REQUEST_ITEM, "99123456");
-		List<Object> items = reviewMediator.sendRequest(inputs);
+		List<Object> items = reviewMediator.invokeService(inputs);
 		Assert.assertTrue(items.size() == 0);
 	}
 	
 	@Test 
 	public void testInvalidReview() {
 		inputs.put(Constants.REQUEST_ITEM, "99xxxikk");
-		List<Object>  items = reviewMediator.sendRequest(inputs);
+		List<Object>  items = reviewMediator.invokeService(inputs);
 		Assert.assertNull(items);
 	}
 	
 	@Test
 	public void testReviewRetrieval() {
 		inputs.put(Constants.REQUEST_ITEM, "33093101");
-		List<Object> items = reviewMediator.sendRequest(inputs);
+		List<Object> items = reviewMediator.invokeService(inputs);
 		Assert.assertTrue(items.size() == 1);
 		Review review = (Review) items.get(0);
 		Assert.assertTrue(review.getAverageOverallRating() == 4.79 );

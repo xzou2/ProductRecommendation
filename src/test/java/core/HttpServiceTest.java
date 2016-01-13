@@ -10,7 +10,6 @@ import java.util.logging.StreamHandler;
 
 import main.java.common.Constants;
 import main.java.core.HttpService;
-import main.java.core.Mediator;
 import main.java.core.ProdRecommendMediator;
 import main.java.core.ReviewMediator;
 import main.java.core.SearchMediator;
@@ -33,10 +32,13 @@ public class HttpServiceTest {
 	private void attachLogCapturer() {
 		logCapturingStream = new ByteArrayOutputStream();
 		Handler[] handlers = log.getParent().getHandlers();
-		log.setLevel(Level.FINER);
 		customLogHandler = new StreamHandler(logCapturingStream, handlers[0].getFormatter());
-		customLogHandler.setLevel(Level.FINER);
 		log.addHandler(customLogHandler);
+		
+	    for(Handler handler : log.getHandlers()) {
+	      handler.setLevel(Level.FINE);
+	    }
+	    log.setLevel(Level.FINE);
 	}
 
 	private String getTestCapturedLog() throws IOException {
@@ -47,7 +49,6 @@ public class HttpServiceTest {
 	@Before
 	public void setUp() throws Exception {
 		httpService = new HttpService();
-		httpService.setLogLevel(Level.FINE);
 		attachLogCapturer();
 	}
 

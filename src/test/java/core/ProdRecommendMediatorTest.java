@@ -38,7 +38,7 @@ public class ProdRecommendMediatorTest extends MediatorTest {
 		inputs.put(Constants.REQUEST_API_KEY, Constants.SERVICE_KEY);
 		// for a invalid itemId, we have response code 400 (bad request)
 		inputs.put(Constants.REQUEST_ITEM, "xxxdd");  
-		List<Object> items = prodRecommender.sendRequest(inputs);
+		List<Object> items = prodRecommender.invokeService(inputs);
 		Assert.assertNull(items);
 	}
 	
@@ -47,7 +47,7 @@ public class ProdRecommendMediatorTest extends MediatorTest {
 		Map<String, String> inputs = new HashMap<String, String>();
 		inputs.put(Constants.REQUEST_API_KEY, Constants.SERVICE_KEY);
 		inputs.put(Constants.REQUEST_ITEM, "99283293");
-		List<Object> items = prodRecommender.sendRequest(inputs);
+		List<Object> items = prodRecommender.invokeService(inputs);
 		Assert.assertTrue(items.size() == 0);
 	}
 	
@@ -56,7 +56,7 @@ public class ProdRecommendMediatorTest extends MediatorTest {
 		Map<String, String> inputs = new HashMap<String, String>();
 		inputs.put(Constants.REQUEST_API_KEY, Constants.SERVICE_KEY);
 		inputs.put(Constants.REQUEST_ITEM, "36904791");
-		List<Object> items = prodRecommender.sendRequest(inputs);
+		List<Object> items = prodRecommender.invokeService(inputs);
 		Assert.assertTrue(items.size() > 0);
 		for ( Object obj : items ) {
 			Item item  = (Item) obj ; 

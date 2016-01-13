@@ -13,6 +13,12 @@ import main.java.entity.Review;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
+/**
+ * A review service mediator
+ * Created on : 07/01/2016
+ * @author    : Xiaocheng Zou
+ *
+ */
 public class ReviewMediator extends Mediator {
 
 	public ReviewMediator(RemoteService service) {
@@ -52,8 +58,12 @@ public class ReviewMediator extends Mediator {
 		return review;
 	}
 
+	/* 
+	 * prepare the review URL in the following format:
+	 * http://api.walmartlabs.com/v1/reviews/{itemId}?apiKey={apiKey}
+	 */
 	@Override
-	protected String assembleURL(Map<String, String> inputs) {
+	protected String prepareURL(Map<String, String> inputs) {
 		StringBuilder sb = new StringBuilder(Constants.SERVICE_BASE);
 		sb.append(REVIEW_SERVICE); 
 		sb.append("/"); 

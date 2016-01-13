@@ -10,11 +10,21 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import main.java.core.interfaces.RemoteService;
-
+/**
+ * A class implements the RemoteService by the Http protocol.
+ * The response of the service is a JSON string.
+ * Note that this class does not throws out exceptions if there are any exceptions occurred during the http request. 
+ * It simply returns a null to the caller, indicating there is something wrong underneath. 
+ * The detailed causes are kept in the logs  
+ * Created on : 07/01/2016
+ * @author    : Xiaocheng Zou
+ *
+ */
 public class HttpService implements RemoteService {
 
 	private static final Logger log = Logger.getLogger(HttpService.class.getName());
 	
+	/*a list of variables defines different kinds of log messages*/
 	public static final String BAD_URL_LOG = "URL is in the bad format.";
 	
 	public static final String UNOPENED_CONNECTION_LOG = "Http connect can not be opened.";
@@ -31,14 +41,12 @@ public class HttpService implements RemoteService {
 	
 	public static final String SUCCESS_LOG = "Http request succeeds";
 	
-	public void setLogLevel(Level level ) {
-		log.setLevel(level);
-	}
 	@Override
 	public String requestService(String url)  {
 		
 		log.log(Level.FINE, "Send a http request to URL " + url );
-		
+
+		//create an URL boject
 		URL urlObj;
 		try {
 			urlObj = new URL (url);
@@ -47,6 +55,7 @@ public class HttpService implements RemoteService {
 			return null ;
 		}
 		
+		// open the http connection
 		HttpURLConnection httpConn;
 		try {
 			httpConn = (HttpURLConnection) urlObj.openConnection();
@@ -55,6 +64,7 @@ public class HttpService implements RemoteService {
 			return null; 
 		}
 		
+		// get the response code
 		int responseCode;
 		try {
 			responseCode = httpConn.getResponseCode();
@@ -63,11 +73,13 @@ public class HttpService implements RemoteService {
 			return null;
 		}
 		
+		// check if the response code is okay or not
 		if ( responseCode != HttpURLConnection.HTTP_OK) {
 			log.log(Level.SEVERE, NOT_OKAY_RESPONSE_CODE_LOG);
 			return null;
 		}
 		
+		// prepare for the response receiving
 		BufferedReader in;
 		try {
 			in = new BufferedReader(
@@ -76,6 +88,7 @@ public class HttpService implements RemoteService {
 			log.log(Level.SEVERE, NO_ESTABLISHED_INPUT_STREAM_LOG );
 			return null; 
 		}
+		// read the response text
 		String inputLine;
 		StringBuffer response = new StringBuffer();
 		try {
@@ -87,13 +100,12 @@ public class HttpService implements RemoteService {
 			return null; 
 			
 		}finally{
-			
+			// close the read stream
 			try {
 				in.close();
 			} catch (IOException e) {
 				log.log(Level.SEVERE, CAN_NOT_CLOSE_STREAM_LOG);
 			}
-			
 		}
 		
 		log.log(Level.FINE, SUCCESS_LOG );

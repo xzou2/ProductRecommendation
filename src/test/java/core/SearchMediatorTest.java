@@ -31,14 +31,14 @@ public class SearchMediatorTest  extends MediatorTest {
 	@Test
 	public void testNoFoundItems() {
 		inputs.put(Constants.REQUEST_SEARCH, "xxxxcccc");
-		List<Object> items = searcher.sendRequest(inputs);
+		List<Object> items = searcher.invokeService(inputs);
 		Assert.assertTrue(items.size() == 0);
 	}
 	
 	@Test
 	public void testFoundItems() {
 		inputs.put(Constants.REQUEST_SEARCH, "ipod");
-		List<Object> items = searcher.sendRequest(inputs);
+		List<Object> items = searcher.invokeService(inputs);
 		Assert.assertTrue(items.size() > 0);
 		for ( Object obj : items ) {
 			Item item  = (Item) obj ; 

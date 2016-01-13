@@ -13,12 +13,27 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-
+/**
+ * A mediator class abstracts the invocation of search, product recommendation and review services
+ * to three basic following steps.
+ * First, prepare the request URL
+ * Second, send the http request
+ * Third, parse the response text in JSON format  
+ * Created on : 07/01/2016
+ * @author    : Xiaocheng Zou
+ *
+ */
 public abstract class Mediator  {
 
+	/**
+	 * a remote service which provides the interface to the walmart open API service
+	 */
 	protected RemoteService service; 
 	
-	protected JSONParser jsonParser ; 
+	/**
+	 * a JSON parser
+	 */
+	protected JSONParser jsonParser; 
 	
 	public Mediator ( RemoteService service) {
 		this.service = service;
@@ -27,31 +42,72 @@ public abstract class Mediator  {
 	
 	protected abstract Logger getLogger(); 
 	
-	protected abstract List<Object> parseResponse (String response);
+	/**
+	 * Given a set of parameters, in key-value pair format, form the request URL
+	 * @param params
+	 * 			a set of request parameters		
+	 * @return
+	 * 			a request URL
+	 */
+	protected abstract String prepareURL(Map<String, String> params);
 	
-	protected abstract String assembleURL(Map<String, String> inputs);
+	/**
+	 * parse a string of text to a list of JSON objects
+	 * @param response
+	 * 			a response text
+	 * @return
+	 * 			a list of JSON objects
+	 */
+	protected abstract List<Object> parseResponse (String response);
 
-	protected String assembleReqOptions(Map<String, String> inputs) {
+	
+	/**
+	 * assemble parameters to a string of request URL. 
+	 * different from prepareURL function, this function only assembles the URL after the URL base 
+	 * @param params
+	 * 			key-value pair parameters 
+	 * @return
+	 * 			a string of request URL
+	 */
+	protected String assembleReqOptions(Map<String, String> params) {
 		StringBuilder sb = new StringBuilder();
 		String prefix = "?";
-		for (String key : inputs.keySet()) {
+		for (String key : params.keySet()) {
 			sb.append(prefix);
 			sb.append(key) ; 
 			sb.append("="); 
-			sb.append(inputs.get(key)); 
+			sb.append(params.get(key)); 
 			prefix = "&";
 		}
 		return sb.toString();
 	}
 	
 	
-	public List<Object> sendRequest(Map<String, String> inputs) {
-		String url = assembleURL(inputs);
-		String response  = service.requestService(url); 
-		if ( response == null) return null; 
+	/**
+	 * fulfill the abstracted three steps in the invocation of remote services.
+	 * 
+	 * @param inputs
+	 * 		 key-value inputs
+	 * @return
+	 * 		a list of JSON objects. 
+	 */
+	public List<Object> invokeService(Map<String, String> inputs) {
+		//1. prepare the request URL
+		String url = prepareURL(inputs);
+		//2. invoke the remote service 
+		String response  = service.requestService(url);
+		if ( response == null) return null; // if something wrong, return null
+		//3. parse the response
 		return parseResponse(response);
 	} 
 	
+	/**
+	 * parse the JSONArray object to a list of items
+	 * @param itemsInJSON
+	 * 		a JSONArray object
+	 * @return
+	 * 		a list of item
+	 */
 	protected List<Object> parseItem(JSONArray itemsInJSON) {
 		List<Object> items = new ArrayList<Object>(); 
 		for ( int i = 0; i < itemsInJSON.size(); ++ i ) {

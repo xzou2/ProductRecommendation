@@ -42,8 +42,12 @@ public class SearchMediator extends Mediator {
 		return items;
 	}
 
+	/* 
+	 * prepare the search URL in the following format:
+	 * http://api.walmartlabs.com/v1/search?apiKey={apiKey}&query={keywords}
+	 */
 	@Override
-	protected String assembleURL(Map<String, String> inputs) {
+	protected String prepareURL(Map<String, String> inputs) {
 		StringBuilder sb = new StringBuilder(Constants.SERVICE_BASE);
 		sb.append(SEARCH_SERVICE); 
 		sb.append(assembleReqOptions(inputs));
