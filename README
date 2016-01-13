@@ -16,15 +16,14 @@ A. Requirement:
 B. Build & Run 
 To build this application, please type the following commands: 
 1. git clone git@github.ncsu.edu:xzou2/ProductRecommendation.git ProductionRecommendation
-   
 2. cd ProductionRecommendation
-
 3. mvn package 
 
 The `mvn package` command compiles project, runs all unit tests and produces an executable jar file (ProductRecommendation-0.0.1-SNAPSHOT-jar-with-dependencies.jar), 
 which is under target folder. 
 If you only want to run compilation or the unit tests, please run the command  "mvn compile" or "mvn test"
-to run the application, just type: 
+Note that it requires the internet connection in order to pass all unit tests since these tests send the real http requests.
+To run the application, just type: 
 java -jar target/ProductRecommendation-0.0.1-SNAPSHOT-jar-with-dependencies.jar [search keywords]
 For example,
 java -jar target/ProductRecommendation-0.0.1-SNAPSHOT-jar-with-dependencies.jar ipod
